@@ -145,6 +145,8 @@ MonoBehaviour:
   maxHeight: 30
   moveSpeed: 15
   edgeGap: 5
+  steps: 0
+  camera: {fileID: 0}
 --- !u!81 &124020094
 AudioListener:
   m_ObjectHideFlags: 0
