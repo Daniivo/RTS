@@ -3,6 +3,8 @@ using System.Collections;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class UnitScript : MonoBehaviour {
+	public MeshRenderer selectionMesh;
+
 	NavMeshAgent navAgent;
 
 	// Use this for initialization
@@ -17,5 +19,13 @@ public class UnitScript : MonoBehaviour {
 
 	public void goTo(Vector3 point){
 		navAgent.SetDestination(point);
+	}
+
+	public void select() {
+		selectionMesh.enabled = true;
+	}
+
+	public void desselect() {
+		selectionMesh.enabled = false;
 	}
 }

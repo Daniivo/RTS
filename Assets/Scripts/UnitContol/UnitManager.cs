@@ -29,12 +29,12 @@ public class UnitManager : MonoBehaviour {
 					Debug.DrawLine(transform.position, hit.point, Color.red, 1);
 					if (hit.collider.tag.Equals("Unit")) {
 						if (Input.GetKey(KeyCode.LeftControl)) {
-							unitList.Add(hit.collider.GetComponent<UnitScript>());
+							selectUnit(hit.collider.GetComponent<UnitScript>());
 						} else {
-							unitList.Add(hit.collider.GetComponent<UnitScript>());
+							selectUnit(hit.collider.GetComponent<UnitScript>());
 						}
-					} else unitList.Clear();
-				} else unitList.Clear();
+					} else clearSelection();
+				} else clearSelection();
 			}
 		} else if (Input.GetKeyDown(KeyCode.Mouse1)) {
 			RaycastHit hit;
@@ -44,5 +44,16 @@ public class UnitManager : MonoBehaviour {
 					u.goTo(hit.point);
 			}
 		}
+	}
+
+	public void selectUnit(UnitScript u) {
+		u.select();
+		unitList.Add(u);
+	}
+
+	void clearSelection() {
+		foreach (UnitScript u in unitList)
+			u.desselect();
+		unitList.Clear();
 	}
 }
