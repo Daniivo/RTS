@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraMovement : MonoBehaviour {
 	public float moveSpeed = 15;
 	public float edgeGap = 5;
-	public CameraZoom camera;
+	public CameraZoom cameraScript;
 
 	// Use this for initialization
 	void Start () {
@@ -32,7 +32,7 @@ public class CameraMovement : MonoBehaviour {
 	void handleCameraPosition() {
 		RaycastHit hit;
 		if (Physics.Raycast(transform.position, Vector3.down, out hit)) {
-			camera.updateCamera(hit.point);
+			cameraScript.updateCamera(hit.point);
 		}
 	}
 }

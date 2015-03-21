@@ -7,14 +7,12 @@ public class CameraZoom : MonoBehaviour {
 	public float maxHeight = 30;
 
 	float steps;
-	Camera camera;
 	float zoom;
 	Vector3 lastTarget;
 
 	// Use this for initialization
 	void Start () {
 		steps = (maxHeight - minHeight) * 0.05f;
-		camera = (Camera)this.GetComponent("Camera");
 		zoom = baseHeight;
 	}
 	
