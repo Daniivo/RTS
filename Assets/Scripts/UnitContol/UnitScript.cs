@@ -11,6 +11,13 @@ public class UnitScript : MonoBehaviour {
 	void Start () {
 		navAgent = GetComponent<NavMeshAgent>();
 	}
+
+	void Awake() {
+	}
+
+	void OnDestroy() {
+		
+	}
 	
 	// Update is called once per frame
 	void Update () {
