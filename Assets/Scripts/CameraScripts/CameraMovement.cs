@@ -6,6 +6,8 @@ public class CameraMovement : MonoBehaviour {
 	public float edgeGap = 5;
 	public CameraZoom cameraScript;
 
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -18,15 +20,15 @@ public class CameraMovement : MonoBehaviour {
 	}
 
 	void handleMovement() {
-		if (Input.GetKey(KeyCode.W)) {
+		if (Input.GetKey(KeyCode.W) || Input.mousePosition.y > Screen.height - edgeGap) {
 			transform.position += Vector3.forward * moveSpeed * Time.deltaTime;
-		} if (Input.GetKey(KeyCode.S)) {
+		} else if (Input.GetKey(KeyCode.S) || Input.mousePosition.y < edgeGap) {
 			transform.position += Vector3.back * moveSpeed * Time.deltaTime;
-		} if (Input.GetKey(KeyCode.A)) {
+		} if (Input.GetKey(KeyCode.A) || Input.mousePosition.x < edgeGap) {
 			transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-		} if (Input.GetKey(KeyCode.D)) {
+		} else if (Input.GetKey(KeyCode.D) || Input.mousePosition.x > Screen.width - edgeGap) {
 			transform.position += Vector3.right * moveSpeed * Time.deltaTime;
-		} 
+		}
 	}
 
 	void handleCameraPosition() {

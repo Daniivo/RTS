@@ -62,8 +62,14 @@ public class UnitManager : MonoBehaviour {
 			RaycastHit hit;
 			if (Physics.Raycast(camera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera.nearClipPlane)), out hit)) {
 				Debug.DrawLine(transform.position, hit.point, Color.red, 1);
-				foreach (UnitScript u in selectedUnitList)
-					u.goTo(hit.point);
+				if (hit.collider.tag.Equals("Unit")) {
+					UnitScript a = (UnitScript)hit.collider.gameObject.GetComponent<UnitScript>();
+					foreach (UnitScript u in selectedUnitList)
+						u.setTarget(a);
+				} else
+					foreach (UnitScript u in selectedUnitList)
+						u.goTo(hit.point);
+				
 			}
 		}
 	}
@@ -71,7 +77,7 @@ public class UnitManager : MonoBehaviour {
 	void checkSelection(Rect r) {
 		foreach (GameObject g in GameObject.FindGameObjectsWithTag("Unit")) {
 			UnitScript u = g.GetComponent<UnitScript>();
-			if (r != null && r.Contains(camera.WorldToScreenPoint(u.transform.position), true))
+			if (r.Contains(camera.WorldToScreenPoint(u.transform.position), true))
 				selectUnit(u);
 		}
 	}
